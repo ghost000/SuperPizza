@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:superpizza/screens/EndScreen.dart';
 
+import 'package:superpizza/model/PersonalDate.dart';
 
 class PayScreen extends StatefulWidget {
   @override
@@ -8,7 +8,6 @@ class PayScreen extends StatefulWidget {
 }
 
 class _PayScreenState extends State<PayScreen> {
-
   // @override
   // void dispose() {
   //   // Clean up the controller when the Widget is disposed
@@ -18,22 +17,17 @@ class _PayScreenState extends State<PayScreen> {
   //   myController4.dispose();
   // }
 
-  String s1 = "";
-  String s2 = "";
-  String s3 = "";
-  String s4 = "";
+  PersonalDate personalDate = new PersonalDate();
   final TextEditingController myController = new TextEditingController();
   final TextEditingController myController2 = new TextEditingController();
   final TextEditingController myController3 = new TextEditingController();
   final TextEditingController myController4 = new TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.grey,
-        
         title: new Text("Pay Screen"),
       ),
       body: new Stack(
@@ -44,11 +38,26 @@ class _PayScreenState extends State<PayScreen> {
             child: new RaisedButton(
               color: Colors.amber,
               onPressed: () {
-                Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => new EndScreen()),
+                //print(this.personalDate.city);
+                showDialog(
+                  context: context,
+                  child: new AlertDialog(
+                    title: const Text("Order status"),
+                    content: Text("Order accepted"),
+                    actions: [
+                      new FlatButton(
+                        child: const Text("Ok"),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
+                  ),
                 );
+
+                // Navigator.push(
+                //   context,
+                //   new MaterialPageRoute(
+                //       builder: (context) => new EndScreen()),
+                // );
                 // If the form is valid, we want to show a Snackbar
                 // Navigate back to first screen when tapped!
               },
@@ -59,7 +68,7 @@ class _PayScreenState extends State<PayScreen> {
               padding: const EdgeInsets.symmetric(vertical: 0.0),
               child: new TextField(
                 onChanged: (String text) {
-                  s1 = text;
+                  this.personalDate.city = text;
                 },
                 controller: myController,
                 decoration: new InputDecoration(labelText: 'Enter your city'),
@@ -68,7 +77,7 @@ class _PayScreenState extends State<PayScreen> {
               padding: const EdgeInsets.symmetric(vertical: 60.0),
               child: new TextField(
                 onChanged: (String text) {
-                  s2 = text;
+                  personalDate.street = text;
                 },
                 controller: myController2,
                 decoration: new InputDecoration(labelText: 'Enter your street'),
@@ -77,7 +86,7 @@ class _PayScreenState extends State<PayScreen> {
               padding: const EdgeInsets.symmetric(vertical: 120.0),
               child: new TextField(
                 onChanged: (String text) {
-                  s3 = text;
+                  personalDate.houseNumber = text;
                 },
                 controller: myController3,
                 decoration:
@@ -87,7 +96,7 @@ class _PayScreenState extends State<PayScreen> {
               padding: const EdgeInsets.symmetric(vertical: 180.0),
               child: new TextField(
                 onChanged: (String text) {
-                  s4 = text;
+                  personalDate.apartmentNumber = text;
                 },
                 controller: myController4,
                 decoration: new InputDecoration(
