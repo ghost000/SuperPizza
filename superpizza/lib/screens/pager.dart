@@ -6,7 +6,6 @@ import 'package:superpizza/model/menu.dart';
 import 'package:superpizza/widgets/cart_button.dart';
 import 'package:superpizza/widgets/custom_app_bar.dart';
 import 'package:superpizza/widgets/animated_circle.dart';
-import 'package:superpizza/widgets/rectangle_indicator.dart';
 import 'package:superpizza/widgets/food_image.dart';
 import 'package:superpizza/widgets/item_card.dart';
 
@@ -157,11 +156,11 @@ class _MenuPagerState extends State<MenuPager> with TickerProviderStateMixin {
         new Positioned.fill(bottom: screenHeight / 4,
             child: new Container(
                 decoration: new BoxDecoration(color: _backColor))),
-        new Align(alignment: Alignment.bottomCenter,
-            child: new Padding(padding: const EdgeInsets.only(bottom: 50.0),
-                child: new RectangleIndicator(
-                    _backgroundPageController, Menu.menu.length, 6.0, Colors.grey[400],
-                    Colors.green))),
+        // new Align(alignment: Alignment.bottomCenter,
+        //     child: new Padding(padding: const EdgeInsets.only(bottom: 50.0),
+        //         child: new RectangleIndicator(
+        //             _backgroundPageController, Menu.menu.length, 6.0, Colors.grey[400],
+        //             Colors.amber))),
         new PageView.builder(
           itemCount: Menu.menu.length,
           itemBuilder: (BuildContext context, int itemCount){
