@@ -46,6 +46,12 @@ flutter:
       - assets/images/menu12.png
       - assets/images/menu13.png
       - assets/images/menu14.png
+      - assets/images/download1.jpeg
+      - assets/images/download2.png
+      - assets/images/download3.png
+      - assets/images/download4.png
+      - assets/images/download5.jpeg
+      - assets/images/download6.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 

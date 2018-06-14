@@ -4,6 +4,4 @@ class PersonalDate{
  String street;
  String houseNumber;
 String apartmentNumber;
-
-
 }
