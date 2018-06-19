@@ -17,10 +17,11 @@ class _PayScreenState extends State<PayScreen> {
   Color color2 = Colors.grey;
   String platnosc = "";
   String bank = "";
-   String city= "";
- String street= "";
- String houseNumber= "";
-String apartmentNumber= "";
+  String city = "";
+  String street = "";
+  String houseNumber = "";
+  String apartmentNumber = "";
+  bool isVisible = false;
 
   void onPressed1() {
     setState(() {
@@ -28,6 +29,8 @@ String apartmentNumber= "";
       color1 = Colors.grey;
       color2 = Colors.grey;
       platnosc = "Cash payment";
+      isVisible = false;
+      bank = "";
     });
   }
 
@@ -37,6 +40,8 @@ String apartmentNumber= "";
       color1 = Colors.red;
       color2 = Colors.grey;
       platnosc = "Card payment";
+      isVisible = false;
+      bank = "";
     });
   }
 
@@ -46,6 +51,7 @@ String apartmentNumber= "";
       color1 = Colors.grey;
       color2 = Colors.red;
       platnosc = "PayU";
+      isVisible = true;
     });
   }
 
@@ -68,7 +74,7 @@ String apartmentNumber= "";
                 decoration: new InputDecoration(labelText: 'Enter your city'),
               )),
           new Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              padding: const EdgeInsets.symmetric(vertical: 0.0),
               child: new TextField(
                 onChanged: (String text) {
                   street = text;
@@ -77,7 +83,7 @@ String apartmentNumber= "";
                 decoration: new InputDecoration(labelText: 'Enter your street'),
               )),
           new Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              padding: const EdgeInsets.symmetric(vertical: 0.0),
               child: new TextField(
                 onChanged: (String text) {
                   houseNumber = text;
@@ -87,7 +93,7 @@ String apartmentNumber= "";
                     new InputDecoration(labelText: 'Enter your house number'),
               )),
           new Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              padding: const EdgeInsets.symmetric(vertical: 0.0),
               child: new TextField(
                 onChanged: (String text) {
                   apartmentNumber = text;
@@ -105,7 +111,18 @@ String apartmentNumber= "";
                   context: context,
                   child: new AlertDialog(
                     title: const Text("Order status"),
-                    content: Text("Order accepted " + this.platnosc + " " + this.bank+ "\n city: " + this.city + " \n street: " + this.street + " \n house number: " + this.houseNumber + " \n apartment number: " + this.apartmentNumber),
+                    content: Text("Order accepted " +
+                        this.platnosc +
+                        " " +
+                        this.bank +
+                        "\n city: " +
+                        this.city +
+                        " \n street: " +
+                        this.street +
+                        " \n house number: " +
+                        this.houseNumber +
+                        " \n apartment number: " +
+                        this.apartmentNumber),
                     actions: [
                       new FlatButton(
                         child: const Text("Ok"),
@@ -148,108 +165,129 @@ String apartmentNumber= "";
           ),
           new Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child:
-          new ButtonBar(
-            
-            children: <Widget>[new Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child:
-              new FloatingActionButton(
-                onPressed: () {
-                  setState(() { bank = "bank1"; });
-                },
-                heroTag: null,
-                child: new ConstrainedBox(
-                  constraints: new BoxConstraints.expand(),
-                  child: new Image.asset(
-                      'assets/images/download1.jpeg'), // .network(_url, fit: BoxFit.cover, gaplessPlayback: true),
-                ),
-              ),
-            ),
-            new Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child:
-              new FloatingActionButton(
-                onPressed: () {
-                  setState(() { bank = "bank2"; });
-                },
-                heroTag: null,
-                child: new ConstrainedBox(
-                  constraints: new BoxConstraints.expand(),
-                  child: new Image.asset(
-                      'assets/images/download2.png'), // .network(_url, fit: BoxFit.cover, gaplessPlayback: true),
-                ),
-              ),
-            ),
-            new Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child:
-              new FloatingActionButton(
-                onPressed: () {
-                  setState(() { bank = "bank3"; });
-                },
-                heroTag: null,
-                child: new ConstrainedBox(
-                  constraints: new BoxConstraints.expand(),
-                  
-                  child: new Image.asset(
-                      'assets/images/download3.png'), // .network(_url, fit: BoxFit.cover, gaplessPlayback: true),
-                ),
-              ),
-            ),
-            ],
+            child: isVisible
+                ? new ButtonBar(
+                    children: <Widget>[
+                      new Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 30.0),
+                        child: new FloatingActionButton(
+                          onPressed: () {
+                            setState(() {
+                              bank = "bank1";
+                            });
+                          },
+                          heroTag: null,
+                          elevation: 0.0,
+                          child: new ConstrainedBox(
+                            constraints: new BoxConstraints.expand(),
+                            child:
+                                new Image.asset('assets/images/download1.jpeg'),
+                          ),
+                        ),
+                      ),
+                      new Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 30.0),
+                        child: new FloatingActionButton(
+                          onPressed: () {
+                            setState(() {
+                              bank = "bank2";
+                            });
+                          },
+                          heroTag: null,
+                          elevation: 0.0,
+                          child: new ConstrainedBox(
+                            constraints: new BoxConstraints.expand(),
+                            child:
+                                new Image.asset('assets/images/download2.png'),
+                          ),
+                        ),
+                      ),
+                      new Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 30.0),
+                        child: new FloatingActionButton(
+                          onPressed: () {
+                            setState(() {
+                              bank = "bank3";
+                            });
+                          },
+                          heroTag: null,
+                          elevation: 0.0,
+                          child: new ConstrainedBox(
+                            constraints: new BoxConstraints.expand(),
+                            child:
+                                new Image.asset('assets/images/download3.png'),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : null,
           ),
-          ),
-           
-          new ButtonBar(
-            children: <Widget>[new Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child:
-              new FloatingActionButton(
-                onPressed: () {
-                  setState(() { bank = "bank4"; });
-                },
-                heroTag: null,
-                child: new ConstrainedBox(
-                  constraints: new BoxConstraints.expand(),
-                  child: new Image.asset(
-                      'assets/images/download4.png'), // .network(_url, fit: BoxFit.cover, gaplessPlayback: true),
-                ),
-              ),),
-              new Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child:
-              new FloatingActionButton(
-                onPressed: () {
-                  setState(() { bank = "bank5"; });
-                },
-                heroTag: null,
-                child: new ConstrainedBox(
-                  constraints: new BoxConstraints.expand(),
-                  child: new Image.asset(
-                      'assets/images/download5.jpeg'), // .network(_url, fit: BoxFit.cover, gaplessPlayback: true),
-                ),
-              ),
-              ),
-              new Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child:
-              new FloatingActionButton(
-                onPressed: () {
-                  setState(() { bank = "bank6"; });
-                },
-                heroTag: null,
-                child: new ConstrainedBox(
-                  constraints: new BoxConstraints.expand(),
-                  child: new Image.asset(
-                      'assets/images/download6.jpeg'), // .network(_url, fit: BoxFit.cover, gaplessPlayback: true),
-                ),
-              ),
-              ),
-            ],
-          ),
-           
-        
+          new Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0),
+              child: isVisible
+                  ? new ButtonBar(
+                      children: <Widget>[
+                        new Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 30.0),
+                          child: new FloatingActionButton(
+                            onPressed: () {
+                              setState(() {
+                                bank = "bank4";
+                              });
+                            },
+                            heroTag: null,
+                            elevation: 0.0,
+                            child: new ConstrainedBox(
+                              constraints: new BoxConstraints.expand(),
+                              child: new Image.asset(
+                                  'assets/images/download4.png'),
+                            ),
+                          ),
+                        ),
+                        new Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 30.0),
+                          child: new FloatingActionButton(
+                            onPressed: () {
+                              setState(() {
+                                bank = "bank5";
+                              });
+                            },
+                            heroTag: null,
+                            elevation: 0.0,
+                            child: new ConstrainedBox(
+                              constraints: new BoxConstraints.expand(),
+                              child: new Image.asset(
+                                  'assets/images/download5.jpeg'),
+                            ),
+                          ),
+                        ),
+                        new Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 30.0),
+                          child: new FloatingActionButton(
+                            onPressed: () {
+                              setState(() {
+                                bank = "bank6";
+                              });
+                            },
+                            heroTag: null,
+                            elevation: 0.0,
+                            child: new ConstrainedBox(
+                              constraints: new BoxConstraints.expand(),
+                              child: new Image.asset(
+                                  'assets/images/download6.jpeg'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : null),
         ])));
   }
 }
